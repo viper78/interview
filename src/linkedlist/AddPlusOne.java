@@ -2,49 +2,34 @@ package linkedlist;
 
 public class AddPlusOne {
 
-    static class Node {
-        int val;
-        Node next;
+    class LinkedListNode {
+        int data;
+        LinkedListNode next;
 
-        Node(int val) {
-            this.val = val;
+        LinkedListNode(int val) {
+            this.data = data;
         }
     }
 
-    public static void main(String[] args) {
-        Node head = new Node(9);
-        head.next = new Node(9);
-        head.next.next = new Node(9);
+    private  LinkedListNode addTwoLists(LinkedListNode l1, LinkedListNode l2, int carry) {
+        if (l1 == null && l2 == null && carry == 0) return null;
 
-        head = plusOne(head);
+        LinkedListNode result = new LinkedListNode(0);
+        int sum = 0;
+        sum += l1 != null ? l1.data : 0;
+        sum += l2 != null ? l2.data : 0;
+        sum += carry;
 
-        while (head != null) {
-            System.out.print(head.val + "->");
-            head = head.next;
+        carry = sum / 10;
+        result.data = sum % 10;
+
+        if (l1 != null || l2 != null) {
+            LinkedListNode next = addTwoLists( l1 != null? l1.next : null, l2 != null ? l2.next : null, carry );
+
+            result.next = next;
         }
+
+        return result;
     }
 
-    private static Node plusOne(Node head) {
-
-        if (head == null) return head;
-
-        int carry = getPlusOne(head);
-        if (carry != 0) {
-            Node first = new Node(carry);
-            first.next = head;
-            head = first;
-        }
-        return head;
-    }
-
-    private static int getPlusOne(Node head) {
-
-        if (head == null) return 1;
-
-        int carry = getPlusOne(head.next);
-        int sum = head.val + carry;
-        head.val = sum % 10;
-
-        return sum/10;
-    }
 }
