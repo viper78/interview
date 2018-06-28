@@ -7,12 +7,12 @@ public class Subtree {
         int[] array2 = {2, 3, 1};
         int[] array3 = {1, 2, 3};
 
-        btree.Tree t1 = createMinimalBST(array1);
-        btree.Tree t2 = createMinimalBST(array3);
+        Tree t1 = createMinimalBST(array1);
+        Tree t2 = createMinimalBST(array3);
         System.out.println(isSubTree(t1, t2));
     }
 
-    private static boolean isSubTree(btree.Tree t1, btree.Tree t2) {
+    private static boolean isSubTree(Tree t1, Tree t2) {
 
         StringBuilder b1 = new StringBuilder();
         StringBuilder b2 = new StringBuilder();
@@ -23,7 +23,7 @@ public class Subtree {
         return (b1.toString().contains(b2.toString()));
     }
 
-    static String preOrderTraversal(btree.Tree node, StringBuilder builder) {
+    static String preOrderTraversal(Tree node, StringBuilder builder) {
 
         if (node != null) {
             builder.append(node.data);
@@ -34,17 +34,17 @@ public class Subtree {
         return builder.toString();
     }
 
-    public static btree.Tree createMinimalBST(int[] arr) {
+    public static Tree createMinimalBST(int[] arr) {
 
         return createMinimalBST(arr, 0, arr.length-1);
     }
 
-    private static btree.Tree createMinimalBST(int[] arr, int start, int end) {
+    private static Tree createMinimalBST(int[] arr, int start, int end) {
 
         if (end < start) return null;
 
         int mid = (start + end)/2;
-        btree.Tree node = new btree.Tree(arr[mid]);
+        Tree node = new Tree(arr[mid]);
         node.setLeft(createMinimalBST(arr, start, mid-1));
         node.setRight(createMinimalBST(arr, mid + 1, end));
         return node;

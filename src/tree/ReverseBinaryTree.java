@@ -1,6 +1,6 @@
 package tree;
 
-import static btree.Subtree.createMinimalBST;
+import static tree.Subtree.createMinimalBST;
 
 public class ReverseBinaryTree {
 
