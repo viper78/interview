@@ -29,7 +29,7 @@ public class HashTable {
         if(entries[hash] != null) {
             HashEntry temp = entries[hash];
 
-            // Check the entry linked list for march
+            // Check the entry linked list for match
             // for the given 'key'
             while( !temp.key.equals(key)
                     && temp.next != null ) {
