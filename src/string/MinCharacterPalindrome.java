@@ -14,24 +14,16 @@ public class MinCharacterPalindrome {
     private static int minChars( String str ) {
 
         int count = 0;
-        boolean flag = false;
-
         while (str.length() > 0) {
 
             if (isPalindrome(str)) {
-                flag = true;
                 break;
-            } else {
-                count++;
-                str = str.substring( 0, str.length() - 1 );
             }
+            count++;
+            str = str.substring( 0, str.length() - 1 );
         }
 
-        if (flag) {
-            return count;
-        }
-
-        return -1;
+        return count;
     }
 
     private static boolean isPalindrome( String str ) {
