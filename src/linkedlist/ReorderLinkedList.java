@@ -29,6 +29,8 @@ public class ReorderLinkedList {
             return head;
 
         LinkNode newHead = slow.next;
+        slow.next = null;
+
         LinkNode prev = null;
         LinkNode next = null;
         LinkNode current = newHead;
@@ -39,18 +41,26 @@ public class ReorderLinkedList {
             prev = current;
             current = next;
         }
-        slow.next = prev;
+        newHead = prev;
 
-        LinkNode temp = head.next;
+        LinkNode merged = new LinkNode(0);
+        LinkNode curr = merged;
+        while (head != null || newHead != null) {
 
-        while (temp.next != null && temp.next.next != null) {
-            int data = temp.data;
-            temp.data = temp.next.next.data;
-            temp.next.next.data = data;
-            temp = temp.next;
+            if (head != null) {
+                curr.next = head;
+                head = head.next;
+                curr = curr.next;
+            }
+
+            if (newHead != null) {
+                curr.next = newHead;
+                newHead = newHead.next;
+                curr = curr.next;
+            }
         }
 
-        return head;
+        return merged.next;
     }
 
     private LinkNode populate() {
