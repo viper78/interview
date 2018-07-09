@@ -20,10 +20,10 @@ public class LargestNumber {
                 String s1 = o1 + o2;
                 String s2 = o2 + o1;
 
-                return (s1.compareTo(s2) > 0 ? -1 : 1);
+                return (s1.compareTo(s2) * -1 );
             }
         });
 
-        list.stream().forEach(s -> System.out.print(s + " "));
+        list.stream().forEach(s -> System.out.print(s + ""));
     }
 }
