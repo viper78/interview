@@ -34,9 +34,57 @@ public class TreeTester {
 //
 //        System.out.println(find(root, 11));
 
-        System.out.println(commonAncestor(root, 7, 10).data);
+//        System.out.println(commonAncestor(root, 7, 10).data);
 
+//        inOrder(root).stream().forEach( s-> System.out.println(s));
+
+//        inorderIterative(root);
+        preorderIterative(root);
     }
+
+    private static void preorderIterative(Tree root) {
+        if (root == null) return;
+
+        Stack<Tree> stack = new Stack();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            root = stack.pop();
+            System.out.print(root.data + " ");
+
+            if (root.left != null) {
+                stack.push(root.left);
+            }
+
+            if (root.right != null) {
+                stack.push(root.right);
+            }
+        }
+    }
+
+    private static void inorderIterative(Tree root) {
+
+        if (root == null) return;
+
+        Stack<Tree> stack = new Stack();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+
+            while (root != null && root.left != null) {
+                root = root.left;
+                stack.push(root);
+            }
+            root = stack.pop();
+            System.out.print(root.data + " ");
+
+            root = root.right;
+            if (root != null) {
+                stack.push(root);
+            }
+        }
+    }
+
 
     private static Tree commonAncestor(Tree root, int a, int b) {
 
@@ -92,6 +140,16 @@ public class TreeTester {
         }
 
         return true;
+    }
+
+    public static ArrayList inOrder(Tree root){
+        ArrayList<Integer> result=new ArrayList();
+        if(root != null){
+            result.addAll(inOrder(root.left));
+            result.add(root.data);
+            result.addAll(inOrder(root.right));
+        }
+        return result;
     }
 
     private static void inorderTraversal(Tree node) {
