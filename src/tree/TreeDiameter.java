@@ -8,29 +8,32 @@ public class TreeDiameter {
         int[] array1 = {1, 2, 1, 3, 1, 1, 5};
 
         Tree t1 = createMinimalBST(array1);
-        System.out.println(diameter(t1));
+        System.out.println(diameterOfBinaryTree(t1));
     }
 
-    private static int diameter(Tree node) {
-
-        int[] res = {0};
-        diameter(node, res);
-        return res[0];
-    }
-
-    private static int diameter(Tree node, int[] res) {
-
+    public static int diameterOfBinaryTree(Tree node) {
         if (node == null) {
             return 0;
         }
-        int left = diameter(node.left, res);
-        int right = diameter(node.right, res);
 
-        int sum = left + right;
+        int leftHeight = heightOfBinaryTree(node.left);
+        int rightHeight = heightOfBinaryTree(node.right);
 
-        if (res[0] < sum) {
-            res[0] = sum;
+        int leftDiameter = diameterOfBinaryTree(node.left);
+        int rightDiameter = diameterOfBinaryTree(node.right);
+
+        return Math.max(leftHeight + rightHeight + 1,
+                Math.max(leftDiameter, rightDiameter));
+    }
+
+    public static int heightOfBinaryTree(Tree node) {
+        if (node == null) {
+            return 0;
         }
-        return left > right ? left + 1 : right + 1;
+        else {
+            return 1 +
+                    Math.max(heightOfBinaryTree(node.left),
+                            heightOfBinaryTree(node.right));
+        }
     }
 }
