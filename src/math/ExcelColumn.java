@@ -29,6 +29,23 @@ public class ExcelColumn {
         return sum;
     }
 
+    public String convertToTitle(int A) {
+        StringBuilder result = new StringBuilder();
+        while(A!=0){
+            int remainder = A % 26;
+            A=A/26;
+            if(remainder == 0) {
+                remainder = 26;
+                A--;
+            }
+            result.append(""+(char)(64+remainder));
+
+        }
+        result.reverse();
+        return result.toString();
+    }
+}
+
 
 
 
