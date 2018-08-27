@@ -22,7 +22,7 @@ public class PrintDiagnolly {
             int i = m - 1;
             int j = k;
 
-            while (j < n - 1) {
+            while (j < n ) {
                 System.out.print(mat[i][j] + " ");
                 i--;
                 j++;
