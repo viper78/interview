@@ -37,11 +37,12 @@ public class IntToRoman {
 
         List<Integer> keys = new ArrayList(map.keySet());
 
-        Collections.sort(keys, new Comparator<Integer>() {
-            public int compare(Integer o1, Integer o2) {
-                return -1 * o1.compareTo(o2);
-            }
-        });
+//        Collections.sort(keys, new Comparator<Integer>() {
+//            public int compare(Integer o1, Integer o2) {
+//                return -1 * o1.compareTo(o2);
+//            }
+//        });
+        Collections.sort(keys, (a, b) -> -1 * a.compareTo(b));
 
         for (int i = 0; i < keys.size(); i++) {
 

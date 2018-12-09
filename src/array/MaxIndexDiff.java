@@ -29,18 +29,21 @@ public class MaxIndexDiff {
             rightMax[j] = Math.max(arr[j], rightMax[j+1]);
         }
 
+        for (int i = 0; i < arr.length; i++) {
+            max = Math.max(max, rightMax[i] - leftMin[i]);
+        }
         int i = 0;
         int j = 0;
 
-        while (i < arr.length - 1 && j < arr.length - 1) {
-
-            if (leftMin[i] < rightMax[j]) {
-                max = Math.max(max, rightMax[j] - leftMin[i]);
-                i++;
-            } else {
-                j++;
-            }
-        }
+//        while (i < arr.length - 1 && j < arr.length - 1) {
+//
+//            if (leftMin[i] < rightMax[j]) {
+//                max = Math.max(max, rightMax[j] - leftMin[i]);
+//                i++;
+//            } else {
+//                j++;
+//            }
+//        }
 
         return max;
     }
