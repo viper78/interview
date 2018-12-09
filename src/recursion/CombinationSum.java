@@ -7,8 +7,8 @@ public class CombinationSum {
 
     public static void main(String[] args) {
 
-        int[] num = {2,3,5,1};
-        int target = 10;
+        int[] num = {1, 0, -1, 0, -2, 2};
+        int target = 0;
 
         List<List<Integer>> result = new ArrayList<>();
 

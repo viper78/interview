@@ -5,7 +5,7 @@ public class LongestCommonSubstring {
     // Common Contiguous string
     public static void main(String[] args) {
 
-        String s1 = "abab";
+        String s1 = "xabxb";
         String s2 = "abba";
 
         System.out.println(longestCommonSubstring(s1.toCharArray(), s2.toCharArray()));

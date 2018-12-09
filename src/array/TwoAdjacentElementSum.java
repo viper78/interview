@@ -4,9 +4,10 @@ public class TwoAdjacentElementSum {
 
     public static void main( String[] args ) {
 
-        int [] nums = {5, 6, 10, 100, 10, 5};
+        int [] nums = {10, 5, 6, 15};
 
-        int maxSum = findMaxAdjacentSum(nums);
+//        int maxSum = findMaxAdjacentSum(nums);
+        int maxSum = maxSum(nums);
 
         System.out.println(maxSum);
     }
@@ -25,5 +26,16 @@ public class TwoAdjacentElementSum {
         }
 
         return (incl > excl) ? incl :excl;
+    }
+
+    public static int maxSum(int arr[]) {
+        int excl = 0;
+        int incl = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            int temp = incl;
+            incl = Math.max(excl + arr[i], incl);
+            excl = temp;
+        }
+        return incl;
     }
 }

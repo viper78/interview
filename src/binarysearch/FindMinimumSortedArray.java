@@ -3,27 +3,49 @@ package binarysearch;
 public class FindMinimumSortedArray {
 
     public static void main(String[] args) {
-        int[] num = {3,4,5,1,2};
-        System.out.println(findMin(num));
+        int[] num = {3,4,2,1,2};
+        System.out.println(findMin2(num));
+        System.out.println("Index :" + findPeakElement(num));
     }
 
-    public static int findMin(int[] num) {
+    public static int findMin2(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
 
-        return findMin(num, 0, num.length);
-    }
-
-    private static int findMin(int[] num, int low, int high) {
-
-        if (low == high) return num[low];
-
-        int mid = low + (high-low)/2;
-
-        if (num[low] < num[mid]) return num[low];
-
-        if (num[mid] > num[low]) {
-            return findMin(num, mid + 1, high);
-        } else {
-            return findMin(num, low, mid - 1);
+        while (low <= high) {
+            int mid = (low + high)/2;
+            if ((mid == 0 || nums[mid] < nums[mid - 1]) &&
+                    (mid == nums.length - 1 || nums[mid] < nums[mid + 1])) {
+                return nums[mid];
+            } else if (nums[mid] < nums[high]){
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
         }
+        return -1;
     }
+
+    public static int findPeakElement(int[] nums) {
+        int lo = 0;
+        int hi = nums.length - 1;
+        while (lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (mid == 0 && nums[mid] > nums[mid + 1] ||
+                    mid == nums.length - 1 && nums[mid] > nums[mid - 1] ||
+                    mid > 0 && mid < nums.length - 1 && nums[mid] > nums[mid - 1] &&
+                            nums[mid] > nums[mid + 1]) {
+                return mid;
+            }
+
+            if (nums[mid] > nums[mid + 1]) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+
+        return lo;
+    }
+
 }

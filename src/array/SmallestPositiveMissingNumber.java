@@ -3,17 +3,16 @@ package array;
 public class SmallestPositiveMissingNumber {
 
     public static void main (String[] args) {
-        int arr[] = {0, 2, 1, -10, -20, 10};
+        int arr[] = {0, 10, 4, -10, -20, 1};
         int arr_size = arr.length;
-        int missing = findMissing(arr, arr_size);
+        int missing = findMissing(arr);
         System.out.println("The smallest positive missing number is "+
                 missing);
     }
 
-    static int findMissing(int arr[], int size) {
-        // First separate positive and
-        // negative numbers
+    private static int findMissing(int[] arr) {
 
+        int size = arr.length;
 
         int low = 0;
         int index = 0;
@@ -26,58 +25,37 @@ public class SmallestPositiveMissingNumber {
             index++;
         }
 
-//        int shift = segregate (arr, size);
+        int[] arr2 = new int[size-low];
 
-        int arr2[] = new int[size-low];
-        int j=0;
-        for(int i = low; i < size;i++)
-        {
+        int j = 0;
+        for (int i = low; i < size; i++) {
             arr2[j] = arr[i];
             j++;
         }
-        // Shift the array and call
-        // findMissingPositive for
-        // positive part
-        return findMissingPositive(arr2, j);
+
+        size = arr2.length;
+
+        for (int i = 0; i < size; i++) {
+
+            if (Math.abs(arr2[i]) - 1 < size && arr2[Math.abs(arr2[i]) - 1] > 0) {
+                arr2[Math.abs(arr2[i]) - 1] = - arr2[Math.abs(arr2[i]) - 1];
+            }
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (arr2[i] > 0) {
+                return i+1;
+            }
+        }
+
+        return -1;
     }
 
     private static void swap(int[] arr, int i, int j) {
+
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
-
-    /* Find the smallest positive missing
-       number in an array that contains
-       all positive integers */
-    static int findMissingPositive(int arr[], int size) {
-        int i;
-
-        // Mark arr[i] as visited by making
-        // arr[arr[i] - 1] negative. Note that
-        // 1 is subtracted because index start
-        // from 0 and positive numbers start from 1
-        for(i = 0; i < size; i++)
-        {
-
-            if( Math.abs(arr[i]) - 1 < size && arr[Math.abs(arr[i]) - 1] > 0)
-                arr[Math.abs(arr[i]) - 1] = -arr[Math.abs(arr[i]) - 1];
-        }
-
-        // Return the first index value at which
-        // is positive
-        for(i = 0; i < size; i++)
-            if (arr[i] > 0)
-                return i+1;  // 1 is added becuase indexes
-        // start from 0
-
-        return size+1;
-    }
-
-    /* Find the smallest positive missing
-       number in an array that contains
-       both positive and negative integers */
-
-    // main function
 
 }

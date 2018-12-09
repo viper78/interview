@@ -29,7 +29,7 @@ public class TreeTester {
 //        System.out.println();
 //        bfs(root);
 //
-//        System.out.println(isBST(root));
+        System.out.println(isBST(root));
 //        System.out.println(height(root));
 //
 //        System.out.println(find(root, 11));

@@ -22,9 +22,9 @@ public class MatrixMedian {
         i3.add(6);
         i3.add(9);
 
+        input.add(i3);
         input.add(i1);
         input.add(i2);
-        input.add(i3);
 
         System.out.println(findMedian(input));
     }
@@ -39,7 +39,8 @@ public class MatrixMedian {
 
             PriorityQueue<ArrayList<Integer>> queue = new PriorityQueue<>( N, new Comparator<ArrayList<Integer>>() {
                 public int compare( ArrayList<Integer> a1, ArrayList<Integer> a2 ) {
-                    return Integer.compare( a1.get( 0 ), a2.get( 0 ) );
+                    return a1.get(0).compareTo(a2.get(0));
+//                    return Integer.compare( a1.get( 0 ), a2.get( 0 ) );
                 }
             });
 
@@ -52,10 +53,12 @@ public class MatrixMedian {
             while( idx <= medIdx ) {
                 ArrayList<Integer> row = queue.poll();
                 num = row.remove( 0 );
+                System.out.print(num + " ");
                 if ( row.size() > 0 )
                     queue.offer( row );
                 idx++;
             }
+            System.out.println();
             return num;
         }
 

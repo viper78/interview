@@ -3,7 +3,7 @@ package math;
 public class FactorialTrailingZeros {
 
     public static void main(String[] args) {
-        System.out.println(findTrailingZeros(10));
+        System.out.println(findTrailingZeros(25));
     }
 
     static int findTrailingZeros(int n) {

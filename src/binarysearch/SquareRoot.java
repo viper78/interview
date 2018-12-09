@@ -4,7 +4,7 @@ public class SquareRoot {
 
     public static void main(String[] args) {
 
-        int num = 16;
+        int num = 121;
 
         int root = findRoot(num);
         System.out.println(root);
@@ -16,7 +16,7 @@ public class SquareRoot {
             return num;
 
         int low = 1;
-        int high = num;
+        int high = num/2;
 
         while (low <= high) {
 

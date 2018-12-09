@@ -9,49 +9,43 @@ public class RotateSingleArray {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
         int k = 2;
 
-        rotateArray(arr, k);
+        rotate(arr, k);
 
-        Arrays.stream(arr).forEach(System.out::println);
+        Arrays.stream(arr).forEach(s -> System.out.print(s +" "));
     }
 
-    private static void rotateArray(int[] arr, int k) {
-
-        int mid = arr.length - k;
-
-        int left = 0;
-        int right = mid - 1;
-
-        while (left < right) {
-            int temp = arr[left];
-            arr[left] = arr[right];
-            arr[right] = temp;
-            left++;
-            right--;
+    public static void rotate(int[] arr, int k) {
+        if (arr == null || arr.length==0 || k < 0) {
+            throw new IllegalArgumentException("Illegal argument!");
         }
 
-        left = mid;
-        right = arr.length - 1;
-
-        while (left < right) {
-            int temp = arr[left];
-            arr[left] = arr[right];
-            arr[right] = temp;
-            left++;
-            right--;
+        if(k > arr.length){
+            k = k %arr.length;
         }
 
-        left = 0;
-        right = arr.length - 1;
+        //length of first part
+        // Rotate right
+        int a = arr.length - k;
+        // Rotate left
+//        int a = k;
 
-        while (left < right) {
-            int temp = arr[left];
-            arr[left] = arr[right];
-            arr[right] = temp;
-            left++;
-            right--;
-        }
+        reverse(arr, 0, a-1);
+        reverse(arr, a, arr.length-1);
+        reverse(arr, 0, arr.length-1);
 
     }
 
+    public static void reverse(int[] arr, int left, int right){
+        if(arr == null || arr.length == 1)
+            return;
+
+        while(left < right){
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
 
 }

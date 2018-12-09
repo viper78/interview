@@ -8,11 +8,11 @@ import java.util.Arrays;
 public class SubstringSearch_KMP {
 
     public static void main( String[] args ) {
-        String text = "abcxabcdabcdabcy";
-        String pattern = "abcdabcy";
+        String text = "jonavaone";
+        String pattern = "one";
 
         System.out.println(bruteforce(text.toCharArray(), pattern.toCharArray()));
-        System.out.println(kmp(text.toCharArray(), pattern.toCharArray()));
+        //System.out.println(kmp(text.toCharArray(), pattern.toCharArray()));
     }
 
     private static boolean kmp( char[] text, char[] pattern ) {
@@ -71,8 +71,9 @@ public class SubstringSearch_KMP {
                 j++;
             } else {
                 j = 0;
-                k++;
-                i = k;
+//                k++;
+//                i = k;
+                i++;
             }
         }
         if (j == pattern.length)

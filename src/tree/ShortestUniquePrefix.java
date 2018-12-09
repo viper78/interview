@@ -29,30 +29,41 @@ public class ShortestUniquePrefix {
     }
 
     void insert(TrieNode root, String s) {
-        TrieNode node = root;
+        TrieNode current = root;
 
         for (Character ch : s.toCharArray()) {
-            node = node.children.computeIfAbsent(ch, c -> new TrieNode());
+            TrieNode node = current.children.get(ch);
+            if (node == null) {
+                node = new TrieNode();
+                current.children.put(ch, node);
+            }
             node.count++;
+            current = node;
         }
+//        for (Character ch : s.toCharArray()) {
+//            node = node.children.computeIfAbsent(ch, c -> new TrieNode());
+//            node.count++;
+//        }
     }
 
     String findPrefix(TrieNode root, String s) {
-        TrieNode node = root;
-        char[] chars = s.toCharArray();
-        int i = 0;
-
+        TrieNode current = root;
         StringBuilder prefix = new StringBuilder();
-        while (true) {
-            char ch = chars[i++];
-
-            prefix.append(ch);
-            node = node.children.get(ch);
-
-            if (node.count == 1) {
-                return prefix.toString();
+        for (Character ch : s.toCharArray()) {
+            TrieNode node = current.children.get(ch);
+            if (node != null) {
+                prefix.append(ch);
+                if (node.count == 1) {
+                    return prefix.toString();
+                }
+                current = node;
+            } else {
+                break;
             }
         }
+
+        return prefix.toString();
+
     }
 
     class TrieNode {

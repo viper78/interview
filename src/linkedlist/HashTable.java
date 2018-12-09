@@ -14,10 +14,20 @@ public class HashTable {
         // position, add entry to the linked list.
         else {
             HashEntry temp = entries[hash];
-            while(temp.next != null) {
+            while (temp != null) {
+                if (temp.key.equals(key)) {
+                    temp.value = value;
+                    break;
+                }
                 temp = temp.next;
             }
-            temp.next = hashEntry;
+            if (temp == null) {
+                temp = entries[hash];
+                while(temp.next != null) {
+                    temp = temp.next;
+                }
+                temp.next = hashEntry;
+            }
         }
     }
 

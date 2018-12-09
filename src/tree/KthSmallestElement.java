@@ -10,6 +10,7 @@ public class KthSmallestElement {
         KthSmallestElement smallestElement = new KthSmallestElement();
         Tree root = smallestElement.populate();
         System.out.println(smallestElement.kthSmallest(root, 2));
+        System.out.println(smallestElement.kthLargest(root, 2));
     }
 
     public Tree populate() {
@@ -44,6 +45,28 @@ public class KthSmallestElement {
             while (right != null) {
                 st.push(right);
                 right = right.left;
+            }
+        }
+
+        return -1; // never hit if k is valid
+    }
+
+    public int kthLargest(Tree root, int k) {
+        Stack<Tree> st = new Stack<>();
+
+        while (root != null) {
+            st.push(root);
+            root = root.right;
+        }
+
+        while (k != 0) {
+            Tree n = st.pop();
+            k--;
+            if (k == 0) return n.data;
+            n = n.left;
+            while (n != null) {
+                st.push(n);
+                n = n.right;
             }
         }
 

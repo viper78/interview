@@ -21,16 +21,17 @@ public class ZeroSum {
 
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         map.put(0, -1);
-        int start = 0;
+        int prev = 0;
+
         //int end = 0;
         int length = 0;
         for (int i = 0; i < a.size(); i++){
             sum += a.get(i);
             if (map.containsKey(sum)){
-                int last = map.get(sum);
-                if (i - last > length){
-                    start = last;
-                    length = i - last;
+                int current = map.get(sum);
+                if (i - current > length){
+                    prev = current;
+                    length = i - current;
                 }
             }else{
                 map.put(sum, i);
@@ -38,7 +39,7 @@ public class ZeroSum {
         }
 
         for (int i = 0; i < length; i++){
-            ans.add(a.get(start + 1 + i));
+            ans.add(a.get(prev + 1 + i));
         }
 
         return ans;

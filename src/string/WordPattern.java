@@ -7,7 +7,8 @@ public class WordPattern {
     public static void main(String[] args) {
 
         WordPattern wordPattern = new WordPattern();
-        System.out.println(wordPattern.wordPattern("abab", "red blue red cat"));
+        System.out.println(wordPattern.wordPattern("abab", "red blue red blue"));
+
     }
 
     public boolean wordPattern(String pattern, String str) {
@@ -16,9 +17,9 @@ public class WordPattern {
             return false;
         Map<Object, Integer> map = new HashMap<>();
         for(int i = 0; i < strs.length; i++) {
-            Object a = map.put(pattern.charAt(i), i);
-            Object b = map.put(strs[i], i);
-            if(!Objects.equals(a, b))
+            Integer a = map.put(pattern.charAt(i), i);
+            Integer b = map.put(strs[i], i);
+            if(a != b)
                 return false;
         }
         return true;

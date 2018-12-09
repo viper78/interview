@@ -23,6 +23,8 @@ public class Hashing {
 //        hashing.bytestoMB();
     }
 
+
+
     private String readEntireFile(String filename) {
 
         String checkSum = null;

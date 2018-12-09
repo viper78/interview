@@ -18,6 +18,8 @@ public class ReArrangeArray {
         for (int i = 0; i < n; i++)
             arr[i] += (arr[arr[i]] % n) * n;
 
+        Arrays.stream(arr).forEach(System.out::println);
+
         // Second Step: Divide all values by n
         for (int i = 0; i < n; i++)
             arr[i] /= n;

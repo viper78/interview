@@ -14,14 +14,14 @@ public class SortLinkedList {
     }
 
     public LinkNode merge(LinkNode head) {
+        LinkNode oldHead = head;
+        if (oldHead == null || oldHead.next == null) return head;
 
-        if (head == null || head.next == null) return head;
-
-        LinkNode middle = getMiddle(head);
+        LinkNode middle = getMiddle(oldHead);
         LinkNode nextToMiddle = middle.next;
         middle.next = null;
 
-        LinkNode left = merge(head);
+        LinkNode left = merge(oldHead);
         LinkNode right = merge(nextToMiddle);
 
         LinkNode merged = mergeSort(left, right);
@@ -51,7 +51,7 @@ public class SortLinkedList {
         LinkNode fast = head;
         LinkNode slow = head;
 
-        while (fast != null && fast.next != null) {
+        while (fast != null && fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }

@@ -29,7 +29,7 @@ public class ExcelColumn {
         return sum;
     }
 
-    public String convertToTitle(int A) {
+    public static String convertToTitle(int A) {
         StringBuilder result = new StringBuilder();
         while(A!=0){
             int remainder = A % 26;
@@ -44,7 +44,7 @@ public class ExcelColumn {
         result.reverse();
         return result.toString();
     }
-}
+
 
 
 
@@ -52,6 +52,8 @@ public class ExcelColumn {
     public static void main(String[] args) {
 
         System.out.println(titleToNumber("BC"));
+        System.out.println(convertToTitle(3));
+
     }
 
 }
