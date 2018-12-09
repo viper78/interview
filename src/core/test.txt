@@ -1,0 +1,133 @@
+1. Overview
+MD5 is a widely used cryptographic hash function, which produces a hash of 128 bit.
+
+In this article we shall see how will see different approaches to create MD5 hashes using various Java libraries.
+
+2. MD5 Using MessageDigest Class
+We have a hashing functionality in java.security.MessageDigest Class. The idea is to first instantiate MessageDigest with the kind of algorithm you want to use as argument to the Singleton:
+
+MessageDigest.getInstance(String Algorithm)
+And then keep on updating the message digest using update() function:
+
+public void update(byte [] input)
+The above function can be called multiple times when say you are reading a long file. Then finally we need to use digest function to generate a hash code:
+
+public byte[] digest()
+Below is an example which generates hash for a password and then verifies it:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+@Test
+public void givenPassword_whenHashing_thenVerifying()
+  throws NoSuchAlgorithmException {
+    String hash = "35454B055CC325EA1AF2126E27707052";
+    String password = "ILoveJava";
+
+    MessageDigest md = MessageDigest.getInstance("MD5");
+    md.update(password.getBytes());
+    byte[] digest = md.digest();
+    String myHash = DatatypeConverter
+      .printHexBinary(digest).toUpperCase();
+
+    assertThat(myHash.equals(hash)).isTrue();
+}
+Similarly, we can also verify checksum of a file:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+@Test
+public void givenFile_generatingChecksum_thenVerifying()
+  throws NoSuchAlgorithmException, IOException {
+    String filename = "src/test/resources/test_md5.txt";
+    String checksum = "5EB63BBBE01EEED093CB22BB8F5ACDC3";
+
+    MessageDigest md = MessageDigest.getInstance("MD5");
+    md.update(Files.readAllBytes(Paths.get(filename)));
+    byte[] digest = md.digest();
+    String myChecksum = DatatypeConverter
+      .printHexBinary(digest).toUpperCase();
+
+    assertThat(myChecksum.equals(checksum)).isTrue();
+}
+3. MD5 using Apache Commons
+The org.apache.commons.codec.digest.DigestUtils class makes things much more simpler to above operations we did using MessageDigest Class.
+
+Lets see an example for hashing and verifying password:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+@Test
+public void givenPassword_whenHashingUsingCommons_thenVerifying()  {
+    String hash = "35454B055CC325EA1AF2126E27707052";
+    String password = "ILoveJava";
+
+    String md5Hex = DigestUtils
+      .md5Hex(password).toUpperCase();
+
+    assertThat(md5Hex.equals(hash)).isTrue();
+}
+4. MD5 using Guava
+Below is another simpler approach for generating MD5 checksums using com.google.common.io.Files.hash :
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+@Test
+public void givenFile_whenChecksumUsingGuava_thenVerifying()
+  throws IOException {
+    String filename = "src/test/resources/test_md5.txt";
+    String checksum = "5EB63BBBE01EEED093CB22BB8F5ACDC3";
+
+    HashCode hash = com.google.common.io.Files
+      .hash(new File(filename), Hashing.md5());
+    String myChecksum = hash.toString()
+      .toUpperCase();
+
+    assertThat(myChecksum.equals(checksum)).isTrue();
+}
+5. Conclusion
+There are different approaches in Java API and other third Party APIs like Apache commons and Guava. Choose wisely based on requirements of project and dependencies your project may want to follow.
+
+As always, the code is available over on Github.
