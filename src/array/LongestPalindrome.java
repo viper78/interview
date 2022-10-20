@@ -18,11 +18,13 @@ public class LongestPalindrome {
 
         for (int i = 0; i < str.length() - 1; i++) {
 
+            // Odd length string
             String temp = longestPalindrome(str, i, i);
             if (temp.length() > longest.length()) {
                 longest = temp;
             }
 
+            // Even length string
             temp = longestPalindrome(str, i, i+1);
             if (temp.length() > longest.length()) {
                 longest = temp;
