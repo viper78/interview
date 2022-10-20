@@ -11,7 +11,8 @@ public class CheckAnagram {
 
     private static boolean isAnagram(String str1, String str2) {
 
-        int[] count = new int[256];
+        // Array to hold number of occurences of each letter
+        int[] count = new int[26];
 
         if (str1.length() != str2.length()) return false;
 
