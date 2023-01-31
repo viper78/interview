@@ -38,7 +38,7 @@ public class SearchInRotatedArray {
             int midpoint = (left + right)/2;
             if (target == nums[midpoint]) {
                 return midpoint;
-            } else if (target <= nums[midpoint]) {
+            } else if (target < nums[midpoint]) {
                 right = midpoint - 1;
             } else {
                 left = midpoint + 1;
