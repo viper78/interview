@@ -1,5 +1,6 @@
 package blind75;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class LongestSubstringWithoutrepeatingChars {
@@ -13,15 +14,16 @@ public class LongestSubstringWithoutrepeatingChars {
 
         int left = 0;
         int result = 0;
-        HashSet<Character> set = new HashSet<Character>();
+        HashMap<Character, Integer> set = new HashMap<>();
 
         for (int right = 0; right < s.length(); right++) {
             char c = s.charAt(right);
-            if (set.contains(c)) {
-                set.remove(s.charAt(left));
-                left++;
+            if (set.containsKey(c)) {
+                if (left <= set.get(c)) {
+                    left = set.get(c) + 1;
+                }
             }
-            set.add(c);
+            set.put(c, right);
             result = Math.max(result, right - left + 1);
         }
 
