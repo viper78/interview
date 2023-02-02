@@ -13,17 +13,22 @@ public class LongestOnes {
 
     public static int longestOnes(int[] nums, int k) {
 
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
         int left = 0;
         int right = 0;
+        int count = 0;
 
         for (right = 0; right < nums.length; right++) {
             int curr = nums[right];
             if (curr == 0) {
-                k--;
+                count++;
             }
-            if (k < 0) {
+            if (count > k) {
                 if (nums[left] == 0) {
-                    k++;
+                    count--;
                 }
                 left++;
             }
