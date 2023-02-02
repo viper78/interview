@@ -8,7 +8,8 @@ public class OverlappingIntervals {
 
     public static void main(String[] args) {
 
-        int[][] intervals = {{1,2},{2,3},{3,4},{1,3}};
+//        int[][] intervals = {{1,2},{2,3},{3,4},{1,3}};
+        int[][] intervals = {{1,2},{1,2},{1,2}};
 
         System.out.println(eraseOverlapIntervals(intervals));
     }
