@@ -1,21 +1,23 @@
 package blind75;
 
 public class MaxAncestorDiff {
+    int maxDiff = Integer.MIN_VALUE;
     public int maxAncestorDiff(TreeNode root) {
-        return helper(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        if (root == null) return 0;
+        dfs(root, root.val, root.val);
+        return maxDiff;
     }
 
-    public int helper(TreeNode root, int min, int max) {
-        if (root == null) {
-            return Integer.MIN_VALUE;
-        }
+    void dfs(TreeNode node, int min, int max) {
+        if (node == null) return;
 
-        min = Math.min(min, root.val);
-        max = Math.max(max, root.val);
+        maxDiff = Math.max(maxDiff, Math.max(Math.abs(min - node.val), Math.abs(max - node.val)));
 
-        int left = helper(root.left, min, max);
-        int right = helper(root.right, min, max);
+        min = Math.min(min, node.val);
+        max = Math.max(max, node.val);
 
-        return Math.max(max - min, Math.max(left, right));
+        dfs(node.left, min, max);
+        dfs(node.right, min, max);
+
     }
 }
