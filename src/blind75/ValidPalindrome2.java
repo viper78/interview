@@ -2,6 +2,8 @@ package blind75;
 
 public class ValidPalindrome2 {
 
+    // Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+    // https://leetcode.com/problems/valid-palindrome-ii/
     public static void main(String[] args) {
         String s = "abca";
         System.out.println(validPalindrome(s));

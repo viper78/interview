@@ -1,6 +1,6 @@
 package blind75;
 
-public class RemoveNthFromLast {
+public class    RemoveNthFromLast {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
 

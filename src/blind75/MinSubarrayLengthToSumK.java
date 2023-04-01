@@ -1,6 +1,6 @@
 package blind75;
 
-public class MinSubarraySum {
+public class MinSubarrayLengthToSumK {
 
     public static void main(String[] args) {
 

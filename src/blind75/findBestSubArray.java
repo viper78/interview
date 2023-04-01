@@ -17,7 +17,7 @@ public class findBestSubArray {
         }
         ans = current;
         for (int i = k; i < nums.length; i++) {
-            current = current - nums[i-k] + nums[k];
+            current = current - nums[i-k] + nums[i];
             ans = Math.max(ans, current);
         }
         System.out.println(ans);

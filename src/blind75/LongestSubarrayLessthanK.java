@@ -1,7 +1,6 @@
 package blind75;
 
 public class LongestSubarrayLessthanK {
-
     public static void main(String[] args) {
         int[] nums = {3,4,2,1,9,0};
         int k = 7;

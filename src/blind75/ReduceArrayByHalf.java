@@ -25,7 +25,7 @@ public class ReduceArrayByHalf {
         while (!queue.isEmpty()) {
 
             Map.Entry<Integer, Integer> entry = queue.remove();
-            counter += (Integer)entry.getValue();
+            counter += entry.getValue();
             if (counter > half) {
                 counter -= entry.getValue();
             } else {
